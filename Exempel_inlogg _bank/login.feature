@@ -5,13 +5,12 @@ Feature: Logga in på internetbanken
     Given användaren befinner sig på inloggningssidan
     When användaren anger sitt användarnamn och lösenord
     And klickar på logga in knappen
-    Then blir användaren inloggad och kan se saldot på startsidan
-
+    Then blir användaren inloggad och kan se saldot
 
   """
   Scenario: Användaren loggar in med felaktiga uppgifter
     Given användaren befinner sig på inloggningssidan
-    When användaren anger felaktigt användarnamn och lösenord
+    When användaren anger Kalle som användarnamn
     And klickar på logga in knappen
     Then visa ett felmeddelande om användarnamn och lösenord
 
@@ -22,3 +21,20 @@ Feature: Logga in på internetbanken
     And klickar på logga in knappen
     Then visa ett felmeddelande om användarnamn och lösenord
   """
+
+
+  #@wip #tagg - work in progress
+  #Feature: Inloggning med Outline, ersätter de grönmarkerade ovan
+
+  Scenario Outline: Ogiltiga inloggningar ger fel
+  Given användaren befinner sig på inloggningssidan
+  When användaren anger "{username}" och "{password}”
+  And klickar på logga in knappen
+  Then visa ett felmeddelande om användarnamn och lösenord
+
+  Examples:
+  | username| password      |
+  | kalle   |               |
+  |         |               |
+  | bandit  | gemigpengarna |
+  | jonas   | hemligt       |
